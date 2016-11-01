@@ -8,7 +8,41 @@ ANSWER_TYPE = {
     "when" : "DATE"
 }
 
+QUESTION_FILE="question.txt"
+COMMONLY_USED_WORDS=set(["the", "be", "to", "of", "and", "a", "in", "that","have",
+"I","it","for","not","","with","he","as","you","is","do","at","this", "but","his",
+"by","from","they","we","say","her","she","or","an","will","my","one","all",
+"would","there","their","what","so","up","out","if","about","who","get","which",
+"go","me","when","make","can","like","time","no","just","him""know","take",
+"people","into","year","your","good","some","could","them","see","other","than",
+"then","now","look","only","come","its","over","think","also","back","after",
+"use","two","how","our","work","first","well","way","even","new","want",
+"because","any","these","give","day","most","us"])
+
 path = "/Users/abhigupta/cs4740/qa-system/doc_dev"
+
+# string of format "questionnumber questionidentifier keyword1 keyword2... keywordn"
+# takes a string and filters the commonly used words out, returns a tuple of
+# the question_number, question_identifier, and keywords
+def filter_input_Question(question_string,bad_words):
+  keywords=filter(lambda x: not x in bad_words, question_string.split())
+  question_number=keywords.pop(0)
+  question_identifier=keywords.pop(0)
+  return (question_number,question_identifier,keywords)
+
+# takes a file location which is the file of raw questions
+# parses all the questions and for each one, calls filterInputQuestion
+def parseAllQuestions(question_location):
+  question_file=open(question_location)
+  raw_data=question_file.read()
+  questions=raw_data.replace("<top>\r\n\r\n<num> Number: ",'') \
+    .replace('\r\n\r\n<desc> Description:\r\n',' ').replace('?\r\n\r\n<','') \
+    .replace('top>\r\n\r\n\r\n','').split('/')
+  for question_string in questions[:-1]:
+    print filterInputQuestion(question_string,COMMONLY_USED_WORDS)
+  return 0
+# starts calling all questions
+parseAllQuestions(QUESTION_FILE)
 
 # determine the answer from a single range of words with specific answer_type
 def parse_answer_from_single_range(answer_type, range_tuple, words):
