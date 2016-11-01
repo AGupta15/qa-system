@@ -1,4 +1,5 @@
 import os
+from sets import Set
 import sys
 import re
 
@@ -18,14 +19,32 @@ def makeWordList(directory):
                     if(len(value) > 0):
                         fileList.append(value)
             wordList.append(fileList)
-
     return wordList
 
 
-def findWordRanges(wordList):
+def findWordRanges(wordList, directory):
+
+    dirWordList = makeWordList(directory)
+    print dirWordList
+
+    wordSet = Set()
+    for word in wordList:
+        wordSet.add(word)
+
+    rangeArray = []
+    for i in range(0, len(dirWordList)):
+        fileWordList = dirWordList[i]
+        fileRanges = []
+        for j in range(0, len(fileWordList)):
+            if (fileWordList[j] in wordSet):
+                fileRanges.append(j)
+        rangeArray.append(fileRanges)
+
+    print rangeArray
+    return rangeArray
 
 
-    return []
 
-
-makeWordList(89)
+fileWordList = makeWordList(89)
+wordArray = ["the", "hello", "hi"]
+findWordRanges(wordArray, 89)
