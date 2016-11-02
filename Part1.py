@@ -2,6 +2,8 @@ import os
 from sets import Set
 import unirest
 
+API_KEY=""
+
 ANSWER_TYPE = {
     "who" : ["PERSON"],
     "where" : ["GPE","LOC"],
@@ -37,7 +39,7 @@ def parse_answer_from_single_range(answer_type, range_tuple, words, question_key
     text = ' '.join(words[range_tuple[0]:range_tuple[1]])
     print "text: {}".format(text)
     response = unirest.post("https://textanalysis.p.mashape.com/spacy-named-entity-recognition-ner",
-                        headers={"X-Mashape-Key": "y5TSV5GnovmshgN9RBrmSvGlOT7Lp1bSp3xjsnaJQ5nmWCtG0H", "Content-Type": "application/x-www-form-urlencoded",
+                        headers={"X-Mashape-Key": API_KEY, "Content-Type": "application/x-www-form-urlencoded",
                                  "Accept": "application/json"}, params={"text": text})
     print response.body
     for result in response.body["result"]:
