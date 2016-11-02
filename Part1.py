@@ -100,12 +100,21 @@ def parseAllQuestions(question_location):
   questions=raw_data.replace("<top>\r\n\r\n<num> Number: ",'') \
     .replace('\r\n\r\n<desc> Description:\r\n',' ').replace('?\r\n\r\n<','') \
     .replace('top>\r\n\r\n\r\n','').split('/')
+
+  output_file=open("answer.txt",'w')
   for question_string in questions[:-1]:
     question_data= filterInputQuestion(question_string,COMMONLY_USED_WORDS)
     print question_data[0]
     # find word ranges for the keywords and corresponding question number
     findWordRanges(question_data[2],question_data[0])
-  return 0
+
+
+    # output answers to the answers.txt file
+    list_of_answers=["a","b","c","d"]
+    for answer in list_of_answers:
+        #format is question_number document_number answer_text
+        output_file.write(str(question_data[0])+' 1 '+answer +'\n')
+
 # starts calling all questions
 parseAllQuestions(QUESTION_FILE)
 
