@@ -91,6 +91,25 @@ def findWordRanges(wordList, directory):
     return rangeArray
 
 # Joined Alex P and Abhi's parts
+def cluster_func(indices_list, document_ranges, window_size = 10):
+  head = 0
+  tail = 0
+  counter = 1
+  ranked_subsequences = []
+
+  while head < len(indices_list):
+    while (indices_list[head] + 1 - indices_list[tail]) > window_size:
+      counter -= 1
+      tail += 1
+    
+    ranked_subsequences.append((tail, head, counter))
+    head += 1
+    counter += 1
+
+  sorted_ranges = sorted(ranked_subsequences, key = lambda x : x[2], reverse = True)
+  return [(x[0],x[1]) for x in sorted_ranges]
+
+
 
 # takes a file location which is the file of raw questions
 # parses all the questions and for each one, calls filterInputQuestion
