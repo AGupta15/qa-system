@@ -3,12 +3,14 @@ from sets import Set
 import unirest
 
 ANSWER_TYPE = {
-    "who" : "PERSON",
-    "where" : "GPE",
-    "when" : "DATE"
+    "who" : ["PERSON"],
+    "where" : ["GPE","LOC"],
+    "when" : ["DATE"]
 }
 
 QUESTION_FILE="question.txt"
+SMALL_QUESTION_FILE="smallq.txt"
+BELIZE="belize.txt"
 COMMONLY_USED_WORDS=set(["the", "be", "to", "of", "and", "a", "in", "that","have",
 "I","it","for","not","","with","he","as","you","is","do","at","this", "but","his",
 "by","from","they","we","say","her","she","or","an","will","my","one","all",
@@ -31,21 +33,24 @@ def filterInputQuestion(question_string,bad_words):
   return (question_number,question_identifier,keywords)
 
 # determine the answer from a single range of words with specific answer_type
-def parse_answer_from_single_range(answer_type, range_tuple, words):
+def parse_answer_from_single_range(answer_type, range_tuple, words, question_keys):
     text = ' '.join(words[range_tuple[0]:range_tuple[1]])
+    print "text: {}".format(text)
     response = unirest.post("https://textanalysis.p.mashape.com/spacy-named-entity-recognition-ner",
-                        headers={"X-Mashape-Key": "<key>", "Content-Type": "application/x-www-form-urlencoded",
+                        headers={"X-Mashape-Key": "y5TSV5GnovmshgN9RBrmSvGlOT7Lp1bSp3xjsnaJQ5nmWCtG0H", "Content-Type": "application/x-www-form-urlencoded",
                                  "Accept": "application/json"}, params={"text": text})
+    print response.body
     for result in response.body["result"]:
-        if ANSWER_TYPE[answer_type] in result:
-            return result.rsplit('/')[0]
+      token=result.rsplit('/')
+      if token[1] in ANSWER_TYPE[answer_type] and not token[0] in question_keys:
+        return token[0]
 
 # return a list of results for each of the given range tuples in range_tuples list
 # Example print parse_answer_from_ranges("who", [(1,12), (2,10), (6,16)], ["test", "My", "name", "is", "Evan", "and", "I", "can", "not", "live", "in", "California", "his", "name", "is", "Bob"])
-def parse_answer_from_ranges(answer_type, range_tuples, words):
+def parse_answer_from_ranges(answer_type, range_tuples, words, question_keys):
     result = []
     for ranges in range_tuples:
-        current = parse_answer_from_single_range(answer_type, ranges, words)
+        current = parse_answer_from_single_range(answer_type, ranges, words, question_keys)
         if current not in result:
             result.append(current)
         if len(result) == 5:
@@ -56,19 +61,17 @@ def parse_answer_from_ranges(answer_type, range_tuples, words):
 def makeWordList(directory):
     wordList = []
     dirPath = path +"/"+ str(directory)+"/"
-    for file in os.listdir(dirPath):
-        filePath = dirPath+file
-        with open(filePath) as f:
-            fileList = []
-            for line in f:
-                values = line.rstrip().split("\t")
-                values = " ".join(values).split(" ")
-                for value in values:
-                    if(len(value) > 0):
-                        fileList.append(value)
-            wordList.append(fileList)
-    return wordList
+    file_list=os.listdir(dirPath)
+    file_list=[f for f in file_list if f[0] != '.']
+    for file_obj in file_list:
+        filePath=os.path.join(dirPath, file_obj)
+        f = open(filePath)
+        for line in f:
+          values=line.split()
+          for value in values:
+            wordList.append(value)
 
+    return wordList
 
 def findWordRanges(wordList, directory):
     dirWordList = makeWordList(directory)
@@ -76,22 +79,17 @@ def findWordRanges(wordList, directory):
 
     wordSet = Set()
     for word in wordList:
-        wordSet.add(word)
+        wordSet.add(word.lower())
 
     rangeArray = []
     for i in range(0, len(dirWordList)):
-        fileWordList = dirWordList[i]
-        fileRanges = []
-        for j in range(0, len(fileWordList)):
-            if (fileWordList[j] in wordSet):
-                fileRanges.append(j)
-        rangeArray.append(fileRanges)
+      if dirWordList[i].lower() in wordSet:
+        rangeArray.append(i)
 
-    # print rangeArray
     return rangeArray
 
 # Joined Alex P and Abhi's parts
-def cluster_func(indices_list, document_ranges, window_size = 10):
+def cluster_func(indices_list, window_size = 10):
   head = 0
   tail = 0
   counter = 1
@@ -101,13 +99,13 @@ def cluster_func(indices_list, document_ranges, window_size = 10):
     while (indices_list[head] + 1 - indices_list[tail]) > window_size:
       counter -= 1
       tail += 1
-    
+
     ranked_subsequences.append((tail, head, counter))
     head += 1
     counter += 1
 
   sorted_ranges = sorted(ranked_subsequences, key = lambda x : x[2], reverse = True)
-  return [(x[0],x[1]) for x in sorted_ranges]
+  return [(x[0]-5,x[1]+5) for x in sorted_ranges]
 
 
 
@@ -119,23 +117,41 @@ def parseAllQuestions(question_location):
   questions=raw_data.replace("<top>\r\n\r\n<num> Number: ",'') \
     .replace('\r\n\r\n<desc> Description:\r\n',' ').replace('?\r\n\r\n<','') \
     .replace('top>\r\n\r\n\r\n','').split('/')
+  print questions
 
   output_file=open("answer.txt",'w')
   for question_string in questions[:-1]:
+    print question_string
+    #qd 0 is id, 1 is type, 2 is keywords
     question_data= filterInputQuestion(question_string,COMMONLY_USED_WORDS)
-    print question_data[0]
+    print question_data[2]
+    question_id=question_data[0]
+    # print question_id
     # find word ranges for the keywords and corresponding question number
-    findWordRanges(question_data[2],question_data[0])
+    word_ranges=findWordRanges(question_data[2],question_id)
+    # print word_ranges
+    word_list=makeWordList(question_id)
+    # range_tuples are indices into the word_ranges array
+    range_tuples=cluster_func(word_ranges)
 
+
+    for (start,end) in range_tuples[:5]:
+      text = ' '.join(word_list[start-4:end+4])
+      print text
+      print '\n'
+
+
+    first_five=range_tuples[:5]
 
     # output answers to the answers.txt file
-    list_of_answers=["a","b","c","d"]
+    list_of_answers= parse_answer_from_ranges(question_data[1].lower(), first_five, word_list,question_data[2])
     for answer in list_of_answers:
+        print answer
         #format is question_number document_number answer_text
-        output_file.write(str(question_data[0])+' 1 '+answer +'\n')
+        output_file.write(str(question_id)+' 1 '+str(answer) +'\n')
 
 # starts calling all questions
-parseAllQuestions(QUESTION_FILE)
+parseAllQuestions(SMALL_QUESTION_FILE)
 
 
 
