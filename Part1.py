@@ -59,24 +59,29 @@ def parse_answer_from_ranges(answer_type, range_tuples, words, question_keys):
             break
     return result
 
-
+# makes a list of words in a directory
 def makeWordList(directory):
     wordList = []
     dirPath = path +"/"+ str(directory)+"/"
     file_list=os.listdir(dirPath)
     file_list=[f for f in file_list if f[0] != '.']
+    file_start_ends=[0]
+    counter=0
     for file_obj in file_list:
         filePath=os.path.join(dirPath, file_obj)
         f = open(filePath)
         for line in f:
           values=line.split()
           for value in values:
+            counter+=1
             wordList.append(value)
+        file_start_ends.append(counter)
 
-    return wordList
+    return wordList,file_start_ends
 
+# finds the ranges that the list of keywords appears in
 def findWordRanges(wordList, directory):
-    dirWordList = makeWordList(directory)
+    dirWordList = makeWordList(directory)[0]
     # print dirWordList
 
     wordSet = Set()
@@ -90,7 +95,7 @@ def findWordRanges(wordList, directory):
 
     return rangeArray
 
-# Joined Alex P and Abhi's parts
+# cluster a list of ranges
 def cluster_func(indices_list, window_size = 10):
   head = 0
   tail = 0
@@ -110,6 +115,13 @@ def cluster_func(indices_list, window_size = 10):
   return [(x[0]-5,x[1]+5) for x in sorted_ranges]
 
 
+# uses the list of tuples and list of file_starts to find where a density occurs
+def find_relevant_doc_id(tuple_range,file_start_ends):
+    average=(tuple_range[0]+tuple_range[1])/2
+    for file_start_index in range(1,len(file_start_ends)):
+      if average>=file_start_ends[file_start_index-1] and average<=file_start_ends[file_start_index]:
+
+        return file_start_index
 
 # takes a file location which is the file of raw questions
 # parses all the questions and for each one, calls filterInputQuestion
@@ -124,36 +136,43 @@ def parseAllQuestions(question_location):
   output_file=open("answer.txt",'w')
   for question_string in questions[:-1]:
     print question_string
-    #qd 0 is id, 1 is type, 2 is keywords
     question_data= filterInputQuestion(question_string,COMMONLY_USED_WORDS)
-    print question_data[2]
     question_id=question_data[0]
-    # print question_id
     # find word ranges for the keywords and corresponding question number
     word_ranges=findWordRanges(question_data[2],question_id)
     # print word_ranges
-    word_list=makeWordList(question_id)
+    word_list_and_ranges=makeWordList(question_id)
+    word_list=word_list_and_ranges[0]
+    file_start_ends=word_list_and_ranges[1]
+    # print file_start_ends
     # range_tuples are indices into the word_ranges array
     range_tuples=cluster_func(word_ranges)
 
-
-    for (start,end) in range_tuples[:5]:
-      text = ' '.join(word_list[start-4:end+4])
-      print text
-      print '\n'
-
-
     first_five=range_tuples[:5]
+
+    # find the doc_ids for the list of tuples of densities
+    doc_ids=[]
+    for tuple_range in first_five:
+      doc_ids.append(find_relevant_doc_id(tuple_range,file_start_ends))
+    print doc_ids
 
     # output answers to the answers.txt file
     list_of_answers= parse_answer_from_ranges(question_data[1].lower(), first_five, word_list,question_data[2])
+    # list_of_answers= ["1","2","3","4","5"]
+    counter=0
     for answer in list_of_answers:
-        print answer
-        #format is question_number document_number answer_text
-        output_file.write(str(question_id)+' 1 '+str(answer) +'\n')
+
+      print answer, doc_ids[counter]
+      # nothing returned
+      if (answer=="None"):
+        output_file.write(str(question_id)+' '+'1'+' '+' ')
+        #answer found
+      else:
+        output_file.write(str(question_id)+' '+str(doc_ids[counter])+' '+str(answer) +'\n')
+      counter+=1
 
 # starts calling all questions
-parseAllQuestions(SMALL_QUESTION_FILE)
+parseAllQuestions(question_file)
 
 
 
