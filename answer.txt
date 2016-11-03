@@ -1,35 +1,339 @@
-89 1 1
-89 1 2
-89 2 3
-89 2 4
-89 2 5
-90 1 1
-90 1 2
-90 1 3
-90 1 4
-90 1 5
-91 1 1
-91 1 2
-91 1 3
-91 1 4
-91 1 5
-92 1 1
-92 1 2
-92 1 3
-92 1 4
-92 2 5
-93 1 1
-93 1 2
-93 1 3
-93 1 4
-93 1 5
-94 1 1
-94 1 2
-94 1 3
-94 1 4
-94 1 5
-95 2 1
-95 2 2
-95 3 3
-95 3 4
-95 1 5
+89 1 None
+89 1 Central America
+90 1 None
+90 1 Elisha G.
+90 1 Elisha G. Otis
+91 1 None
+91 1 Orange County
+92 1 Buddy Holly
+92 1 Peter Schuelzky
+92 1 None
+92 1 Paul
+93 1 None
+94 1 None
+94 1 Elisha
+94 1 Elisha G. Otis
+95 2 None
+96 1 None
+96 1 Martin Luther King Jr.
+97 1 None
+98 1 None
+99 1 None
+99 1 MARY BETH SHERIDAN
+100 1 None
+101 1 None
+102 1 None
+102 1 Janet
+102 1 Janet Evans
+102 1 Anita Nall
+103 1 None
+103 1 13 years
+104 1 None
+104 1 Henri Amouroux
+105 1 None
+105 1 Statuary Hall
+105 1 Bruce Barnson
+106 1 None
+106 1 Tim McClure
+107 1 None
+108 1 None
+108 1 Page 13A
+108 1 LAURA PALMER
+109 1 None
+110 1 None
+110 1 Queens
+111 1 L. Widmer
+111 1 None
+111 2 Lou Brock
+112 1 None
+112 1 Australia
+113 1 None
+114 1 None
+115 1 None
+116 1 None
+116 1 April 29, 1990
+116 1 Page 3
+117 1 None
+117 1 William Wordsworth
+118 1 None
+119 1 None
+119 1 Tutankhamun
+120 1 None
+120 1 Maine
+121 1 None
+121 1 1927
+122 1 None
+123 1 Groton
+123 1 None
+123 1 Cambridge
+124 1 None
+125 1 None
+125 1 Pablo Picasso
+125 1 Claude
+125 1 Willem de Kooning
+126 1 None
+126 1 Venezuela
+127 1 None
+128 1 None
+129 1 None
+130 1 None
+131 1 None
+132 1 None
+132 1 Northern Territory
+133 1 None
+133 1 nearly five years
+134 1 John Lithgow
+134 1 None
+134 2 Archbishop Desmond Tutu
+135 1 None
+136 1 None
+137 1 None
+138 1 Tsutsumi
+138 1 None
+139 1 None
+140 1 None
+141 1 None
+142 1 None
+143 1 None
+143 1 Depardieu
+144 2 -- Buffalo Bill Cody
+144 2 None
+144 1 Bill Collection
+145 1 None
+146 2 None
+146 1 Bryant Park
+147 1 None
+148 1 None
+148 1 North of Island
+148 1 Saipan
+149 1 None
+149 1 Column
+150 1 None
+151 1 None
+151 1 1995
+152 1 None
+152 1 Charles
+152 1 Benjamin Franklin
+152 1 Ulysses S.
+152 1 Jan Masaryk
+153 1 None
+153 1 Queen Beatrix
+154 1 None
+155 1 first day
+155 1 Sunday
+156 1 None
+156 2 NOV 94
+157 1 Frederick C. Klein
+157 1 None
+158 1 None
+159 1 None
+160 1 None
+160 1 Fred Claire
+161 1 None
+161 1 Maystadt
+162 1 None
+163 1 None
+164 1 None
+165 1 San Francisco
+165 1 None
+166 1 None
+166 1 Column
+166 1 Sydney
+167 1 None
+168 1 Libya
+168 1 U.S.
+168 1 None
+169 1 None
+170 1 None
+170 1 yesterday
+171 1 None
+172 1 Hiram L. Fong
+172 2 Reagan
+172 2 None
+173 1 None
+174 1 Sondheim
+174 1 None
+175 1 20 February
+175 1 None
+176 1 None
+177 1 None
+177 1 Mississippi
+178 1 None
+178 1 John Lennon
+179 1 the Bay Area
+179 1 None
+180 1 None
+181 1 Viveros
+181 1 Manuel Viveros'
+181 1 None
+182 1 None
+182 1 Houston
+183 1 Binney
+183 1 None
+184 2 years
+184 2 today
+184 1 None
+185 1 None
+185 1 box)Today
+186 1 None
+187 1 None
+188 2 None
+189 1 None
+190 1 None
+190 1 Manuel Noriega
+191 1 Times Staff
+191 1 None
+192 1 None
+192 1 today
+193 1 Boston
+193 1 None
+194 1 Madrid
+194 1 None
+195 1 None
+195 1 Lucille Ball
+195 1 David Suchet
+195 1 James Earl Jones
+196 1 None
+196 1 Richmond
+196 1 Baltimore
+197 1 Pasadena
+197 1 None
+197 1 Night
+198 1 None
+198 1 Tuesday
+199 1 None
+200 1 None
+201 1 Mickey
+201 1 Kermit
+201 1 None
+202 1 None
+203 1 None
+203 1 South Africa
+204 1 None
+204 1 Four years ago
+204 1 10-30
+205 1 None
+206 1 None
+206 2 Indianapolis
+207 1 None
+208 1 Column
+208 1 None
+208 1 Scotland
+209 1 Johnson
+209 1 RW Chapman - but
+209 1 James
+209 1 Samuel Johnson
+210 1 None
+211 1 None
+211 1 Speaks
+212 1 None
+212 1 Thursday
+213 1 None
+213 1 Page
+214 1 None
+214 1 TRACEY KAPLAN
+215 1 None
+216 1 None
+217 1 None
+218 1 None
+219 1 None
+220 1 None
+221 2 Horton
+221 1 Jeff Hilary
+221 1 None
+221 2 Eric Pace
+222 1 None
+223 1 Robber Bridegroom
+223 1 None
+224 1 None
+224 1 Fred Silverman
+225 1 None
+225 1 Hunter
+226 1 Haiti
+226 1 None
+226 1 Belem
+227 2 None
+227 2 Sam
+228 1 None
+228 1 Charles Gibson
+229 1 None
+229 1 the past
+230 1 None
+230 1 L.A.
+230 1 Los Angeles
+230 1 San Fernando Valley
+231 1 None
+232 1 Mass.
+232 1 Mass. (
+232 1 None
+233 1 None
+234 1 None
+234 1 Peter Butler
+235 1 None
+235 1 Last year
+236 1 None
+237 1 Zimbabwe
+237 1 None
+238 2 None
+238 1 February 20, 1990
+238 1 Tuesday
+239 1 Thelma Dickinson
+239 1 Susan Sarandon
+239 1 None
+240 1 None
+241 1 None
+242 1 Vern Gosdin
+242 1 Ricky Van Shelton
+242 1 George Strait
+242 1 Hank Williams Jr.
+243 1 None
+244 1 None
+244 1 Fain
+244 1 Sammy Fain
+245 1 None
+245 1 Dean
+246 1 None
+246 1 Tuesday
+247 1 March 24, 1990
+247 1 None
+248 1 Fleming
+248 1 None
+249 1 None
+250 1 None
+250 1 Ga.
+251 1 Thursday
+251 1 None
+251 1 08-30
+252 1 None
+253 1 None
+253 1 Laguna Beach
+254 1 None
+254 1 1976
+255 1 None
+256 1 None
+256 1 Chiate
+257 1 None
+258 1 None
+259 1 None
+260 1 None
+260 1 05-11
+261 1 1987
+261 1 None
+261 1 the 1920s
+262 1 None
+262 1 Mike Peters
+263 1 None
+264 1 None
+264 1 Mark Twain's
+265 1 Leigh ----
+265 1 Scarlett O'Hara
+265 1 None
+265 1 Vivien Leigh
+266 1 None
+266 2 1980
+267 1 Camilo Jose Cela
+267 1 None
+267 1 Cela
+268 1 None
+269 1 None
+270 1 None

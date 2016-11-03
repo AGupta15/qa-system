@@ -32,6 +32,10 @@ def filterInputQuestion(question_string,bad_words):
   keywords=filter(lambda x: not x in bad_words, question_string.split())
   question_number=keywords.pop(0)
   question_identifier=keywords.pop(0)
+  if question_identifier=="Where's":
+    question_identifier="Where"
+  if question_identifier=="Who's":
+    question_identifier="Who"
   return (question_number,question_identifier,keywords)
 
 # determine the answer from a single range of words with specific answer_type
@@ -172,7 +176,7 @@ def parseAllQuestions(question_location):
       counter+=1
 
 # starts calling all questions
-parseAllQuestions(question_file)
+parseAllQuestions(QUESTION_FILE)
 
 
 
