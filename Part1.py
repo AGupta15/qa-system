@@ -2,6 +2,8 @@ import os
 from sets import Set
 import unirest
 
+API_KEY=""
+
 
 ANSWER_TYPE = {
     "who" : ["PERSON"],
@@ -31,6 +33,10 @@ def filterInputQuestion(question_string,bad_words):
   keywords=filter(lambda x: not x in bad_words, question_string.split())
   question_number=keywords.pop(0)
   question_identifier=keywords.pop(0)
+  if question_identifier=="Where's":
+    question_identifier="Where"
+  if question_identifier=="Who's":
+    question_identifier="Who"
   return (question_number,question_identifier,keywords)
 
 # determine the answer from a single range of words with specific answer_type
@@ -38,7 +44,7 @@ def parse_answer_from_single_range(answer_type, range_tuple, words, question_key
     text = ' '.join(words[range_tuple[0]:range_tuple[1]])
     print "text: {}".format(text)
     response = unirest.post("https://textanalysis.p.mashape.com/spacy-named-entity-recognition-ner",
-                        headers={"X-Mashape-Key": "y5TSV5GnovmshgN9RBrmSvGlOT7Lp1bSp3xjsnaJQ5nmWCtG0H", "Content-Type": "application/x-www-form-urlencoded",
+                        headers={"X-Mashape-Key": API_KEY, "Content-Type": "application/x-www-form-urlencoded",
                                  "Accept": "application/json"}, params={"text": text})
     if response.headers.get('X-RateLimit-requests-Remaining') < 10: raise Exception('Dont waste Alexs Money!!')
     # answer = []
@@ -61,24 +67,29 @@ def parse_answer_from_ranges(answer_type, range_tuples, words, question_keys):
             break
     return result
 
-
+# makes a list of words in a directory
 def makeWordList(directory):
     wordList = []
     dirPath = path +"/"+ str(directory)+"/"
     file_list=os.listdir(dirPath)
     file_list=[f for f in file_list if f[0] != '.']
+    file_start_ends=[0]
+    counter=0
     for file_obj in file_list:
         filePath=os.path.join(dirPath, file_obj)
         f = open(filePath)
         for line in f:
           values=line.split()
           for value in values:
+            counter+=1
             wordList.append(value)
+        file_start_ends.append(counter)
 
-    return wordList
+    return wordList,file_start_ends
 
+# finds the ranges that the list of keywords appears in
 def findWordRanges(wordList, directory):
-    dirWordList = makeWordList(directory)
+    dirWordList = makeWordList(directory)[0]
     # print dirWordList
 
     wordSet = Set()
@@ -123,6 +134,13 @@ def cluster_func(indices_list, window_size = 10):
   return [(x[0]-5,x[1]+5) for x in sorted_ranges]
 
 
+# uses the list of tuples and list of file_starts to find where a density occurs
+def find_relevant_doc_id(tuple_range,file_start_ends):
+    average=(tuple_range[0]+tuple_range[1])/2
+    for file_start_index in range(1,len(file_start_ends)):
+      if average>=file_start_ends[file_start_index-1] and average<=file_start_ends[file_start_index]:
+
+        return file_start_index
 
 # takes a file location which is the file of raw questions
 # parses all the questions and for each one, calls filterInputQuestion
@@ -132,37 +150,45 @@ def parseAllQuestions(question_location):
   questions=raw_data.replace("<top>\r\n\r\n<num> Number: ",'') \
     .replace('\r\n\r\n<desc> Description:\r\n',' ').replace('?\r\n\r\n<','') \
     .replace('top>\r\n\r\n\r\n','').split('/')
+  print questions
 
   output_file=open("answer.txt",'w')
   for question_string in questions[:-1]:
     print question_string
-    #qd 0 is id, 1 is type, 2 is keywords
     question_data= filterInputQuestion(question_string,COMMONLY_USED_WORDS)
-    # print question_data[2]
     question_id=question_data[0]
-    # print question_id
     # find word ranges for the keywords and corresponding question number
     word_ranges=findWordRanges(question_data[2],question_id)
     # print word_ranges
-    word_list=makeWordList(question_id)
+    word_list_and_ranges=makeWordList(question_id)
+    word_list=word_list_and_ranges[0]
+    file_start_ends=word_list_and_ranges[1]
+    # print file_start_ends
     # range_tuples are indices into the word_ranges array
-    range_tuples=evan_cluster(word_ranges)
-
-
-    for (start,end) in range_tuples[:5]:
-      text = ' '.join(word_list[start-4:end+4])
-      # print text
-      # print '\n'
-
+    range_tuples=cluster_func(word_ranges)
 
     first_five=range_tuples[:5]
 
+    # find the doc_ids for the list of tuples of densities
+    doc_ids=[]
+    for tuple_range in first_five:
+      doc_ids.append(find_relevant_doc_id(tuple_range,file_start_ends))
+    print doc_ids
+
     # output answers to the answers.txt file
     list_of_answers= parse_answer_from_ranges(question_data[1].lower(), first_five, word_list,question_data[2])
+    # list_of_answers= ["1","2","3","4","5"]
+    counter=0
     for answer in list_of_answers:
-        print "Answer: " + str(answer)
-        #format is question_number document_number answer_text
-        output_file.write(str(question_id)+' 1 '+str(answer) +'\n')
+
+      print answer, doc_ids[counter]
+      # nothing returned
+      if (answer=="None"):
+        output_file.write(str(question_id)+' '+'1'+' '+' ')
+        #answer found
+      else:
+        output_file.write(str(question_id)+' '+str(doc_ids[counter])+' '+str(answer) +'\n')
+      counter+=1
 
 # starts calling all questions
 parseAllQuestions(QUESTION_FILE)
