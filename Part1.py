@@ -2,7 +2,7 @@ import os
 from sets import Set
 import unirest
 
-API_KEY = ""
+API_KEY = "y5TSV5GnovmshgN9RBrmSvGlOT7Lp1bSp3xjsnaJQ5nmWCtG0H"
 
 ANSWER_TYPE = {
     "who": ["PERSON"],
@@ -48,13 +48,13 @@ def parse_answer_from_single_range(answer_type, range_tuple, words, question_key
     response = unirest.post("https://textanalysis.p.mashape.com/spacy-named-entity-recognition-ner",
                             headers={"X-Mashape-Key": API_KEY, "Content-Type": "application/x-www-form-urlencoded",
                                      "Accept": "application/json"}, params={"text": text})
-    if response.headers.get('X-RateLimit-requests-Remaining') < 10: raise Exception('Dont waste Alexs Money!!')
+    if response.headers.get('X-RateLimit-requests-Remaining') < 10: raise Exception('Dont waste Alexs Money!!' + str(response.headers))
     answer = []
     for result in response.body["result"]:
         token = result.rsplit('/')
         if token[1] in ANSWER_TYPE[answer_type] and not token[0] in question_keys:
             answer.append(token[0])
-
+    return answer
 
 # return a list of results for each of the given range tuples in range_tuples list
 # Example print parse_answer_from_ranges("who", [(1,12), (2,10), (6,16)], ["test", "My", "name", "is", "Evan", "and", "I", "can", "not", "live", "in", "California", "his", "name", "is", "Bob"])
@@ -62,11 +62,12 @@ def parse_answer_from_ranges(answer_type, range_tuples, words, question_keys):
     result = []
     for ranges in range_tuples:
         answers = parse_answer_from_single_range(answer_type, ranges, words, question_keys)
-        for current in answers:
-            if current not in result:
-                result.append(current)
-            if len(result) == 5:
-                break
+        if answers:
+            for current in answers:
+                if current not in result:
+                    result.append(current)
+                if len(result) == 5:
+                    break
     return result
 
 
@@ -171,7 +172,7 @@ def parseAllQuestions(question_location):
         file_start_ends = word_list_and_ranges[1]
         # print file_start_ends
         # range_tuples are indices into the word_ranges array
-        range_tuples = cluster_func(word_ranges)
+        range_tuples = evan_cluster(word_ranges)
 
         first_five = range_tuples[:5]
 
@@ -186,16 +187,17 @@ def parseAllQuestions(question_location):
         # list_of_answers= ["1","2","3","4","5"]
         counter = 0
         for answer in list_of_answers:
-
-            print answer, doc_ids[counter]
+            # TODO: fix doc id counter shit
+            print answer
             # nothing returned
             if (answer == "None"):
                 output_file.write(str(question_id) + ' ' + '1' + ' ' + ' ')
                 # answer found
             else:
-                output_file.write(str(question_id) + ' ' + str(doc_ids[counter]) + ' ' + str(answer) + '\n')
+                # fix was this str(doc_ids[counter])
+                output_file.write(str(question_id) + ' ' + 'fix' + ' ' + str(answer) + '\n')
             counter += 1
 
 
 # starts calling all questions
-parseAllQuestions(QUESTION_FILE)
+parseAllQuestions(SMALL_QUESTION_FILE)
