@@ -4,7 +4,7 @@ import unirest
 import nltk
 
 API_KEY = "y5TSV5GnovmshgN9RBrmSvGlOT7Lp1bSp3xjsnaJQ5nmWCtG0H"
-
+SIM_THRESHOLD = .5
 ANSWER_TYPE = {
     "who": ["PERSON"],
     "where": ["GPE", "LOC"],
@@ -97,21 +97,21 @@ def makeWordList(directory):
 def findWordRanges(wordList, directory):
     dirWordList = makeWordList(directory)[0]
     # print dirWordList
-
-    wordSet = Set()
+    question_words = []
     for word in wordList:
-        wordSet.add(word.lower())
+        question_words.add(word.lower())
 
     rangeArray = []
     for i in range(0, len(dirWordList)):
-        if dirWordList[i].lower() in wordSet:
+        if dirWordList[i].lower() in question_words or any(get_similarity(dirWordList[i].lower(), word) > SIM_THRESHOLD for word in question_words):
             rangeArray.append(i)
     return rangeArray
 
 
+
 # Evan cluster
 
-def evan_cluster(indices_list, word_list, max_gap = 30):
+def cluster_func(indices_list, word_list, max_gap = 30):
   indices_list.sort()
   groups = [[indices_list[0]]]
   for x in indices_list[1:]:
@@ -132,42 +132,12 @@ def evan_cluster(indices_list, word_list, max_gap = 30):
       last += 1
     group[0] = first + 1
     group[-1] = last - 1
-
-  print 'START CLUSTER TEST\n\n'
-  print len(groups)
-  # remove: for testing
-  for group in groups:
-    print group
-    for i in range(group[0]-3, group[0]+3):
-      print "(i: {}, word: {}".format(i,word_list[i])
-    print '========'
-    for i in range(group[-1]-3, group[-1]+3):
-      print "(i: {}, word: {}".format(i,word_list[i])
-    print '\n'
-  print '\n\n'
-
   return groups
 
-
-# Joined Alex P and Abhi's parts
-def cluster_func(indices_list, window_size=10):
-    head = 0
-    tail = 0
-    counter = 1
-    ranked_subsequences = []
-
-    while head < len(indices_list):
-        while (indices_list[head] + 1 - indices_list[tail]) > window_size:
-            counter -= 1
-            tail += 1
-
-        ranked_subsequences.append((tail, head, counter))
-        head += 1
-        counter += 1
-
-    sorted_ranges = sorted(ranked_subsequences, key=lambda x: x[2], reverse=True)
-    return [(x[0] - 5, x[1] + 5) for x in sorted_ranges]
-
+def get_similarity(word1, word2):
+    response = unirest.get("http://swoogle.umbc.edu/SimService/GetSimilarity?operation=api&phrase1={}&phrase2={}".format(word1, word2))
+    try: return float(response.body)
+    except ValueError: return None
 
 # uses the list of tuples and list of file_starts to find where a density occurs
 def find_relevant_doc_id(average, file_start_ends):
@@ -199,7 +169,7 @@ def parseAllQuestions(question_location):
         file_start_ends = word_list_and_ranges[1]
         # print file_start_ends
         # range_tuples are indices into the word_ranges array
-        range_tuples = evan_cluster(word_ranges, word_list)
+        range_tuples = cluster_func(word_ranges, word_list)
 
         first_five = range_tuples[:5]
         print first_five
@@ -221,5 +191,7 @@ def parseAllQuestions(question_location):
             counter += 1
 
 
+
 # starts calling all questions
-parseAllQuestions(SMALL_QUESTION_FILE)
+# parseAllQuestions(SMALL_QUESTION_FILE)
+get_similarity('kill','murder')
