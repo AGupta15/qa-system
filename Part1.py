@@ -67,7 +67,7 @@ def parse_answer_from_ranges(answer_type, range_tuples, words, question_keys):
                 if current not in result:
                     result.append(current)
                 if len(result) == 5:
-                    break
+                    return result
     return result
 
 
@@ -118,6 +118,7 @@ def evan_cluster(indices_list, max_gap=30):
         else:
             groups.append([x])
     groups.sort(key=len, reverse=True)
+    print [len(g) for g in groups]
     return [(x[0] - 5, x[-1]) if x[0] > 5 else (x[0], x[-1]) for x in groups if len(groups) >= 2]
 
 
