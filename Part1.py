@@ -118,7 +118,7 @@ def evan_cluster(indices_list, max_gap=30):
         else:
             groups.append([x])
     groups.sort(key=len, reverse=True)
-    print [len(g) for g in groups]
+    # print [len(g) for g in groups]
     return [(x[0] - 5, x[-1]) if x[0] > 5 else (x[0], x[-1]) for x in groups if len(groups) >= 2]
 
 
@@ -143,8 +143,7 @@ def cluster_func(indices_list, window_size=10):
 
 
 # uses the list of tuples and list of file_starts to find where a density occurs
-def find_relevant_doc_id(tuple_range, file_start_ends):
-    average = (tuple_range[0] + tuple_range[1]) / 2
+def find_relevant_doc_id(average, file_start_ends):
     for file_start_index in range(1, len(file_start_ends)):
         if average >= file_start_ends[file_start_index - 1] and average <= file_start_ends[file_start_index]:
             return file_start_index
@@ -158,7 +157,7 @@ def parseAllQuestions(question_location):
     questions = raw_data.replace("<top>\r\n\r\n<num> Number: ", '') \
         .replace('\r\n\r\n<desc> Description:\r\n', ' ').replace('?\r\n\r\n<', '') \
         .replace('top>\r\n\r\n\r\n', '').split('/')
-    print questions
+    # print questions
 
     output_file = open("answer.txt", 'w')
     for question_string in questions[:-1]:
@@ -174,29 +173,24 @@ def parseAllQuestions(question_location):
         # print file_start_ends
         # range_tuples are indices into the word_ranges array
         range_tuples = evan_cluster(word_ranges)
-
+        # print range_tuples
         first_five = range_tuples[:5]
-
-        # find the doc_ids for the list of tuples of densities
-        doc_ids = []
-        for tuple_range in first_five:
-            doc_ids.append(find_relevant_doc_id(tuple_range, file_start_ends))
-        print doc_ids
+        print first_five
 
         # output answers to the answers.txt file
         list_of_answers = parse_answer_from_ranges(question_data[1].lower(), first_five, word_list, question_data[2])
-        # list_of_answers= ["1","2","3","4","5"]
+        # list_of_answers= [("1",2),("2",2),("3",1000),("4",2000),("5",500)]
         counter = 0
         for answer in list_of_answers:
-            # TODO: fix doc id counter shit
-            print answer
+            print answer[0]
             # nothing returned
-            if (answer == "None"):
+            if (answer[0] == "None"):
                 output_file.write(str(question_id) + ' ' + '1' + ' ' + ' ')
                 # answer found
             else:
-                # fix was this str(doc_ids[counter])
-                output_file.write(str(question_id) + ' ' + 'fix' + ' ' + str(answer) + '\n')
+                doc_id=find_relevant_doc_id(answer[1],file_start_ends)
+                print "DOCUMENT ID for average "+str(answer[1])+": "+str(doc_id)
+                output_file.write(str(question_id) + ' ' + str(doc_id) + ' ' + str(answer) + '\n')
             counter += 1
 
 
