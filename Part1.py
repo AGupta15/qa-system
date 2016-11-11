@@ -1,6 +1,7 @@
 import os
 from sets import Set
 import unirest
+import nltk
 
 API_KEY = "y5TSV5GnovmshgN9RBrmSvGlOT7Lp1bSp3xjsnaJQ5nmWCtG0H"
 
@@ -10,19 +11,19 @@ ANSWER_TYPE = {
     "when": ["DATE"]
 }
 
-QUESTION_FILE = "question.txt"
-SMALL_QUESTION_FILE = "smallq.txt"
-BELIZE = "belize.txt"
-COMMONLY_USED_WORDS = set(["the", "be", "to", "of", "and", "a", "in", "that", "have",
-                           "I", "it", "for", "not", "", "with", "he", "as", "you", "is", "do", "at", "this", "but",
-                           "his",
-                           "by", "from", "they", "we", "say", "her", "she", "or", "an", "will", "my", "one", "all",
-                           "would", "there", "their", "what", "so", "up", "out", "if", "about", "get", "which",
-                           "go", "me", "make", "can", "like", "time", "no", "just", "him""know", "take",
-                           "people", "into", "year", "your", "good", "some", "could", "them", "see", "other", "than",
-                           "then", "now", "look", "only", "come", "its", "over", "think", "also", "back", "after",
-                           "use", "two", "how", "our", "work", "first", "well", "way", "even", "new", "want",
-                           "because", "any", "these", "give", "day", "most", "us"])
+SENTENCE_TERMINALS = ['.', '!', '?', '<', '>', '/']
+QUESTION_FILE="question.txt"
+SMALL_QUESTION_FILE="smallq.txt"
+BELIZE="belize.txt"
+COMMONLY_USED_WORDS=set(["the", "be", "to", "of", "and", "a", "in", "that","have",
+"I","it","for","not","","with","he","as","you","is","do","at","this", "but","his",
+"by","from","they","we","say","her","she","or","an","will","my","one","all",
+"would","there","their","what","so","up","out","if","about","get","which",
+"go","me","make","can","like","time","no","just","him""know","take",
+"people","into","year","your","good","some","could","them","see","other","than",
+"then","now","look","only","come","its","over","think","also","back","after",
+"use","two","how","our","work","first","well","way","even","new","want",
+"because","any","these","give","day","most","us"])
 
 path = "doc_dev"
 
@@ -83,10 +84,10 @@ def makeWordList(directory):
         filePath = os.path.join(dirPath, file_obj)
         f = open(filePath)
         for line in f:
-            values = line.split()
-            for value in values:
-                counter += 1
-                wordList.append(value)
+          values=nltk.word_tokenize(line)
+          for value in values:
+            counter+=1
+            wordList.append(value)
         file_start_ends.append(counter)
 
     return wordList, file_start_ends
@@ -109,17 +110,42 @@ def findWordRanges(wordList, directory):
 
 
 # Evan cluster
-def evan_cluster(indices_list, max_gap=30):
-    indices_list.sort()
-    groups = [[indices_list[0]]]
-    for x in indices_list[1:]:
-        if abs(x - groups[-1][-1]) <= max_gap:
-            groups[-1].append(x)
-        else:
-            groups.append([x])
-    groups.sort(key=len, reverse=True)
-    print [len(g) for g in groups]
-    return [(x[0] - 5, x[-1]) if x[0] > 5 else (x[0], x[-1]) for x in groups if len(groups) >= 2]
+def evan_cluster(indices_list, word_list, max_gap = 30):
+  indices_list.sort()
+  groups = [[indices_list[0]]]
+  for x in indices_list[1:]:
+      if abs(x - groups[-1][-1]) <= max_gap:
+          groups[-1].append(x)
+      else:
+          groups.append([x])
+  groups.sort(key=len, reverse=True)
+  
+  groups = [group for group in groups if len(group) >= 2]
+  # adjust chunks to extend to full sentences on each side of the bound
+  for group in groups:
+    first = group[0]
+    last = group[-1]
+    while (first > 0 and not any(terminal in word_list[first] for terminal in SENTENCE_TERMINALS)):
+      first -= 1
+    while (last <= (len(word_list) - 1) and not any(terminal in word_list[last] for terminal in SENTENCE_TERMINALS)):
+      last += 1
+    group[0] = first + 1
+    group[-1] = last - 1
+
+  print 'START CLUSTER TEST\n\n'
+  print len(groups)
+  # remove: for testing
+  for group in groups:
+    print group
+    for i in range(group[0]-3, group[0]+3):
+      print "(i: {}, word: {}".format(i,word_list[i])
+    print '========'
+    for i in range(group[-1]-3, group[-1]+3):
+      print "(i: {}, word: {}".format(i,word_list[i])
+    print '\n'
+  print '\n\n'
+
+  return groups
 
 
 # Joined Alex P and Abhi's parts
@@ -153,6 +179,7 @@ def find_relevant_doc_id(tuple_range, file_start_ends):
 # takes a file location which is the file of raw questions
 # parses all the questions and for each one, calls filterInputQuestion
 def parseAllQuestions(question_location):
+<<<<<<< Updated upstream
     question_file = open(question_location)
     raw_data = question_file.read()
     questions = raw_data.replace("<top>\r\n\r\n<num> Number: ", '') \
@@ -173,7 +200,7 @@ def parseAllQuestions(question_location):
         file_start_ends = word_list_and_ranges[1]
         # print file_start_ends
         # range_tuples are indices into the word_ranges array
-        range_tuples = evan_cluster(word_ranges)
+        range_tuples = evan_cluster(word_ranges, word_list)
 
         first_five = range_tuples[:5]
 
