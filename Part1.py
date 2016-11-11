@@ -54,7 +54,7 @@ def parse_answer_from_single_range(answer_type, range_tuple, words, question_key
     for result in response.body["result"]:
         token = result.rsplit('/')
         if token[1] in ANSWER_TYPE[answer_type] and not token[0] in question_keys:
-            answer.append(token[0])
+            answer.append((token[0], (range_tuple[0] + range_tuple[1]) / 2))
     return answer
 
 # return a list of results for each of the given range tuples in range_tuples list
