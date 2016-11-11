@@ -47,13 +47,10 @@ def parse_answer_from_single_range(answer_type, range_tuple, words, question_key
                         headers={"X-Mashape-Key": API_KEY, "Content-Type": "application/x-www-form-urlencoded",
                                  "Accept": "application/json"}, params={"text": text})
     if response.headers.get('X-RateLimit-requests-Remaining') < 10: raise Exception('Dont waste Alexs Money!!')
-    # answer = []
     for result in response.body["result"]:
       token=result.rsplit('/')
       if token[1] in ANSWER_TYPE[answer_type] and not token[0] in question_keys:
-        # answer.append(token[0])
         return token[0]
-    # return max(set(answer), key=answer.count) if answer else None
 
 # return a list of results for each of the given range tuples in range_tuples list
 # Example print parse_answer_from_ranges("who", [(1,12), (2,10), (6,16)], ["test", "My", "name", "is", "Evan", "and", "I", "can", "not", "live", "in", "California", "his", "name", "is", "Bob"])
