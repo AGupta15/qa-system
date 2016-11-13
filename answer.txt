@@ -1,0 +1,617 @@
+89 13 Guatemala
+89 79 San Jose
+90 18 Hedda Bird
+90 51 David
+90 51 Pain
+91 80 South
+91 80 France
+92 63 Jimmy Smith
+92 63 Hammond
+92 63 Lou Donaldson
+92 63 Jackie Maclean
+92 41 Huckabay
+93 38 Gandhi
+94 1 Whitcombe L. Judson
+94 2 Jerry Whitcomb
+94 9 Yvonne Rainer
+95 48 Vo Van Kiet
+95 72 Kwan
+95 93 Mr Keating's
+95 93 Mr Keating
+96 22 Bush
+96 30 Abernathy
+97 1 Anubis Warpus
+97 1 Jacek Lentz
+97 1 Brian Friedman
+98 23 Yugoslavia
+99 26 Powelson
+100 6 Hungary
+100 6 Danube
+102 2 Sanders
+102 1 Janet Evans
+102 1 Anita Nall
+102 11 Mike Barrowman
+102 11 Melvin Stewart
+103 28 A 15th century
+103 28 three 17th century
+103 28 1800
+103 28 1794
+103 28 between June 1983 and August 1984
+104 79 Francois Mitterrand
+104 1 Robert Badinter
+104 1 Badinter
+104 17 Touvier
+105 35 Philo T. Farnsworth
+105 24 Farnsworth
+106 13 Shamu One
+106 13 Charlotte Goddard
+106 13 Herb Kelleher
+106 13 Herb
+107 83 Kitchell
+107 30 Tallichet
+107 52 Markowitz
+107 52 Uranga
+107 34 Martin
+108 10 Armstrong
+108 26 Andre Toussaint
+108 26 Mar
+108 1 Coach Ernie Dickerson
+109 13 Deaton
+109 13 Kari Larsen
+109 13 Nixon
+109 97 Santa Barbara'
+109 97 Debbi Morgan
+111 13 David Q. Voigt
+112 79 U.S.
+112 79 Hampstead
+112 79 N.C.
+112 38 Earth
+112 14 Venusian
+113 99 The Richard King
+113 36 Mata
+113 66 Brawley
+113 100 Connor
+114 4 Egypt
+114 1 Nile
+115 8 Mexico
+117 39 Julia Limer's
+117 39 Carrie Wale
+117 39 Luke Williams
+117 40 Dorothy Wordsworth
+117 70 Toad
+118 9 Patty Richmond
+118 9 Alma
+119 52 Hassan Kamy
+119 52 Middle
+119 25 Bejart
+120 12 Maine
+120 42 New Shoreham
+121 46 1926
+121 66 September of the season
+122 57 Judson Hale
+122 8 Tim Clark
+123 6 Euclid
+123 6 Atlanta
+123 5 Plato
+124 11 David J. Jefferson
+124 100 Julius Caesar
+124 19 Trump
+125 5 Picassos
+125 5 Binoche
+125 5 Vincent van Gogh's
+125 5 Jack Lang
+125 4 John Whitney Payson
+126 38 Mina
+126 1 Venezuela
+127 6 Queensland
+127 55 Kakadu
+127 10 Australia
+128 24 Doug Mazza
+128 24 John Dorsey
+128 24 Larry Messelt
+128 24 Mazza
+128 24 Dorsey
+129 92 David Leibowitz
+129 92 Trivial Pursuit
+129 9 JW Spear
+130 62 Jean-Francois Lacan
+130 29 Donald McKinnon
+131 59 four months
+132 46 Chamberlain
+132 1 Azaria
+132 1 Australia
+133 90 June
+133 90 four-year
+133 60 the first quarter
+134 49 Julia Neuberger
+134 80 Tutue
+134 1 Desmond Tutu
+135 2 this year
+135 88 Thursday
+136 79 20th-century
+136 20 Earlier this year
+136 20 the end of
+136 29 Thursday
+138 35 Yoshiaki Tsutsumi
+138 35 Tsutsumi
+138 35 Forbes
+138 71 Edith du Pont Pearson
+138 71 Montchanin
+139 42 Jim Shofner
+140 91 Kevin Boyle
+140 91 Rushdie
+140 91 Boyle
+140 19 Mohammed
+141 30 Alabama
+141 30 Mellow Valley
+141 36 Mississippi
+141 36 Kentucky
+141 36 Indiana
+142 1 Kenya
+142 4 China
+143 17 Genevieve Bujold
+143 17 Pablo
+143 17 Manuel Aranguiz
+143 35 Depardieu
+143 92 Lord Weir
+144 73 Bill Walsh
+144 11 Maas
+144 11 Kelly
+145 57 the River Kwai
+145 57 Thai
+145 81 Sophia
+145 81 Tokyo
+145 10 the River Kwai'
+148 20 GUAM
+148 1 Saipan
+150 55 the Democratic Union of Hungarians
+151 54 yesterday
+151 54 this year
+151 72 1990
+152 92 Edward
+152 8 Birthdays
+152 95 Princess Martha
+152 1 Charles
+152 1 Thomas Jefferson
+154 71 THREE DAYS
+154 65 21
+157 31 Reeves
+157 29 James Naismith
+157 61 Gwen
+157 61 Donald Hardaway
+157 61 Tim
+158 1 Zebulon Pike
+158 22 Diana
+158 22 Anna
+159 84 Konno
+160 79 Horne
+160 31 Darling
+160 17 Langston Hughes
+161 78 Maastricht
+162 13 Hawass
+162 26 Bejart
+163 47 Jack Koerper
+163 99 Charles Lindbergh
+163 10 Lindberghs
+163 27 Bruno Hauptmann
+163 40 Symons
+164 8 Peter Dalis
+164 29 Lodish
+164 29 Schembechler
+164 47 Bo Schembechler
+166 79 Sydney
+166 79 Australia
+166 79 Zimbabwe
+166 79 Adelaide
+166 79 England
+167 67 Boomer Esiason
+168 73 Miami
+168 42 PM
+168 42 Houston
+168 74 Caribbean
+168 74 Jamaica
+169 15 Arctic
+169 15 Nunavut
+169 24 the Soviet Union
+169 2 Canada
+169 8 Alaska
+170 57 30
+170 57 1988
+170 57 a year later
+170 57 Sunday
+170 57 Monday
+171 68 Botswana
+171 34 Africa
+171 34 Kalahari Desert
+172 73 Reagan
+172 8 Norman Ornstein
+173 5 Queen Elizabeth II
+173 37 Hata
+173 37 Mitterrand
+174 97 Glen Rasmussen
+174 33 Van Buren
+174 28 Goodrich
+175 74 21 May
+175 7 weekly
+177 65 Kenya
+177 99 Luanda
+178 80 Rosh Hashanah
+179 89 United Kingdom
+179 89 London
+179 72 Quincy
+179 72 Mass.
+179 1 El Dorado'
+180 31 Almaraz
+180 31 Frank Romero
+180 31 Gilbert Lujan
+180 31 Roberto de
+180 86 Johnson
+181 24 Carlos
+181 1 Manuel Viveros'
+182 45 Minneapolis
+182 45 San Jose
+183 38 Sennet
+183 85 Silly Putty
+183 13 David Latimer
+184 70 early Sunday
+185 11 Monday-Saturday
+185 11 Sundays
+185 7 days July 30
+186 100 Kay
+186 100 Marcia
+186 100 Christopher
+186 65 Chan
+186 65 Eric
+187 99 Rebecca Caruso
+187 67 James Piontek
+187 70 Lapworth
+188 34 St. Cloud
+189 57 today
+190 59 Bernard Shaw
+190 18 Noriega
+191 15 _Jane Goodall
+191 72 Fauci
+191 1 Jane Goodall
+192 87 26
+192 2 today
+192 2 three-day
+193 93 Stapleton
+193 93 Denver
+193 1 Boston
+194 46 Catalonia
+194 41 Palencia
+194 41 Toledo
+195 47 Frank Lorenzo
+195 47 Blohowiak
+195 78 Bush
+197 13 Orange Bowl
+198 64 three-month-old
+198 90 1986
+198 90 March 1980
+199 97 Whittier College
+199 32 Belmont
+199 32 South Second Street
+199 32 San Jose
+200 22 Las Vegas
+201 42 Henson
+201 4 Jim Henson
+201 4 Kermit
+201 13 Michael Eisner
+202 5 Thursday
+203 79 Winnie Mandela
+203 1 Johannesburg
+204 13 50 years ago
+205 46 Robert T. Morris Jr.
+206 47 Indianapolis
+208 1 GLASGOW
+208 1 Scotland
+208 16 Edinburgh
+209 35 Robert Caro
+209 35 Johnson
+209 59 Goldwyn
+210 79 Peter Meekin
+211 29 Mar
+211 29 Gonzalo Sanchez de Lozada's
+211 29 Gonzalo Sanchez de Lozada
+211 29 Victor Hugo Cardenas
+211 64 Gonzalo Sanchez
+212 35 1969 to 1973
+212 26 today
+212 26 two decades
+213 56 Albert Finney
+213 56 Charlie Brown
+213 26 Cowans
+213 37 Jean-Luc Picard
+213 37 Dickens
+214 91 Nall
+214 15 Andrew
+214 15 Sarah
+215 50 Mr Ginn
+215 50 Phil Quigley
+215 50 Ginn
+216 17 James Stewart
+216 17 Liberty Valance
+216 10 Loren Dean
+216 14 Miller
+216 19 Sheen
+217 18 James II
+217 18 William
+217 18 Mary
+219 46 Utah
+219 46 West
+219 4 Rochester
+219 1 Yersinia
+220 84 Napa County
+221 75 Donald Wildmon
+221 97 HO
+221 6 William Webster
+221 46 Boris Karloff
+221 46 Dickens
+222 85 66
+222 1 1932
+223 13 Morrison
+223 13 Solomon
+224 2 Moore
+224 2 Van Dyke
+224 2 Van Dyke's
+224 2 Barry
+224 4 William "Cannon" Conrad
+225 90 Hargrove
+225 90 Max Monroe
+225 90 Jake
+226 57 Brazil
+226 57 Bolivia
+226 57 Paraguay
+226 57 Mexico
+226 57 Guatemala
+227 69 Kenneth Stone
+227 68 Don Shinkle
+227 68 Sam Walton's
+228 51 Deborah Norville
+228 51 Bryant Gumble
+228 13 Kathleen Sullivan's
+228 37 Paula Zahn
+228 37 Sullivan
+229 24 Thursday
+230 100 Las Vegas's
+230 52 Las Vegas
+230 42 California
+230 42 Las Vegas'
+230 1 Orange County
+232 11 Amherst
+232 11 Bowdoin
+232 1 Mass.
+233 9 1842
+233 9 1840
+234 62 Vallecillo
+234 51 Spencer
+234 1 Peter Butler
+234 1 Henry A. Politz
+235 10 1972
+236 1 U.S.
+236 1 Satan
+236 2 Minnesota
+237 43 the Soviet Union
+237 43 Angola
+237 43 Zaire
+237 43 Australia
+237 43 Guinea
+238 94 last season
+238 66 this week
+239 22 Mark Malicki
+239 22 Truffles
+240 50 London Page XV
+240 19 Geoff Cooke
+240 47 Tietmeyer
+240 47 Kiichi Miyazawa's
+240 47 International Summit
+241 1 Windsor Castle
+241 39 Delaware
+242 72 Crowell
+242 78 Billy Joe Royal
+243 5 1995
+244 59 MURRY FRYMER
+244 38 Gloria Estefan
+244 8 Franz Gruber
+245 71 Whitty
+245 1 Ursula Andress
+245 1 Terry Moore
+245 11 George Christie
+246 22 35
+246 22 40
+246 1 1928
+246 2 1962
+247 10 May
+247 46 All year
+247 46 today
+247 46 40 years
+248 84 Marion
+248 93 Marsden
+248 8 James Bond
+248 92 Walker
+249 87 Trumps
+249 87 Column
+249 98 San Diego
+251 94 the days
+251 56 1986
+251 1 Thursday
+251 2 Tuesday
+252 86 Mel Owens
+252 8 Walsh
+252 8 John Shaw
+254 79 1980
+254 39 two months ago
+255 66 India
+255 66 Asia
+255 71 Thailand
+255 71 Kanchanaburi Province
+255 71 Ban I
+256 45 Fred Astaire
+256 45 Irene
+256 45 Vernon Castle
+256 45 Annie
+257 74 2,300 years ago
+257 74 today
+259 5 Kennedy
+259 5 Johnson
+259 5 Lisa Malone
+259 50 Hauck
+260 9 16th-century
+260 51 each new year
+260 4 Wednesday
+261 57 March 25
+261 68 1935
+261 25 1933
+261 25 1867-1960
+262 55 Lee Salem
+262 55 Johnston
+262 55 Patterson
+262 16 Berke Breathed
+263 1 UK
+263 3 Spain
+263 21 the Isle of Man
+263 21 the Irish Sea
+264 90 Smith
+264 90 Mark Twain's
+264 7 Huckleberry Finn
+264 7 Mark Twain
+264 1 Paul Needham
+265 13 Margaret Mitchell's
+265 13 Rhett Butler
+265 13 Scarlett O'Hara
+265 48 Jonsson
+265 24 Clark Gable
+266 23 April 26, 1986
+267 28 Naguib Mahfouz
+267 28 Maurice Allais
+267 28 Gertrude B. Elion
+267 98 Kovalyov
+267 98 Gorbachev
+268 35 Silverman
+269 73 Smith
+269 94 Robert Kopp
+270 25 fourth-quarter
+271 9 Tortelvis --
+271 9 Vegas-era
+271 9 Ja Paul Jo
+271 9 Carl Ja
+271 9 Ed Zeppelin
+272 35 Oscar Wilde
+272 35 Lamb
+272 72 Stephens
+273 53 the end of May
+273 53 the beginning of the year
+274 54 Jack Koerper
+274 90 Charles Lindbeargh
+274 90 Charles Lindbergh
+274 46 Lindberghs
+274 38 Charles Linbergh
+275 18 North
+275 54 Beniamino Andreatta
+276 46 Spike Lee
+276 46 Rob Reiner
+276 46 Harry Met Sally
+276 46 Oliver Stone
+276 46 Peter Weir
+278 1 Little Caesars
+279 72 the Sea Kings
+281 27 Oliver
+282 21 Pink Floyd
+282 37 Hunter
+282 33 Tom Espie
+283 34 1985
+283 34 three-by-six-foot
+284 56 two years
+284 71 yesterday
+285 13 New York
+285 13 Manhattan
+286 29 Jan 1993
+286 29 Bristol Myers-Squibb
+287 86 William Power Staff
+287 53 Reagan
+287 53 Bush
+287 1 Ronald Reagan
+287 1 William Henry Harrison
+288 28 Bush
+288 28 Mulroney
+288 6 Michael Dukakis
+288 6 Dukakis
+288 6 Adamses
+289 14 Peru
+289 1 Lima
+289 2 Santa Lucia
+289 2 U.S.
+289 22 Tartagal
+290 71 Cuba
+290 1 Jamaica
+290 58 New Orleans
+291 34 St. Cloud
+292 20 St. Cloud
+293 96 Parise
+293 87 Richard Truly
+293 87 Jonathan Wolman
+293 24 Jerry Grey
+293 57 Jerry Ross
+294 25 Viktor Blagov
+294 75 Bruce McCandless II
+294 75 Kathryn Sullivan
+295 48 the day
+295 22 1975
+295 1 next month
+296 98 December
+296 10 1975
+297 59 Bernard Shaw
+297 24 Hoeveler
+297 24 Noriega
+299 3 Puerto Rico
+299 2 Boston
+300 27 New Year's Rockin
+300 44 Fourth of July
+301 31 New Year's Rockin
+302 92 Baltimore
+303 92 Sherman
+303 51 Magnan
+304 21 James McAlpine
+304 21 Frank Stronach
+304 84 Sherman
+306 38 Sennet
+306 85 Silly Putty
+306 13 David Latimer
+307 74 early Sunday
+308 23 Clark County
+308 23 Las Vegas
+308 23 Strip
+309 40 Henson
+310 48 Kermit
+310 48 Mickey
+310 48 Minnie Mouse
+310 48 Jim Henson
+310 42 Henson
+311 51 Sullivan
+311 9 Bush
+311 26 Colin Powell
+312 68 Miami
+312 94 UCLA
+313 89 mid-December
+313 24 years
+314 95 mid-December
+314 64 three-month-old
+314 90 1986
+314 90 March 1980
+315 93 mid-December
+315 65 three-month-old
+315 90 1986
+315 90 March 1980
+316 85 Santa Ana
+316 85 Huntington Beach
+316 85 Brea
+316 54 the United States
+317 23 Fullerton College
+317 87 Coyote Hills
+317 87 Dizon
+318 46 LEXINGTON
+318 46 Ky.
+318 46 Florida
+318 14 Baltimore
+319 2 nil
+320 4 nil
