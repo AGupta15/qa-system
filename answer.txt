@@ -613,5 +613,7 @@
 318 46 Ky.
 318 46 Florida
 318 14 Baltimore
-319 2 nil
-320 4 nil
+319 16 Baltimore
+319 31 Houston
+319 62 Hollywood Park's
+320 53 Ramos
