@@ -2,19 +2,23 @@ import os
 from sets import Set
 from difflib import SequenceMatcher
 import unirest
+import gensim
 
 API_KEY="WZ0ualun6QmshdQduPj4uBwILMncp17djDFjsnlJb4JOqNT6sU"
 
+# train Word2Vec with Google binary
+# NOTE: This can take approximately 2 minutes
+MODEL = gensim.models.Word2Vec.load_word2vec_format('./GoogleNews-vectors-negative300.bin', binary=True)
 
 ANSWER_TYPE = {
     "who" : ["PERSON"],
     "where" : ["GPE","LOC"],
     "when" : ["DATE"]
 }
-SIM_THRESHOLD = .70
+SIM_THRESHOLD = 0.405
 SENTENCE_TERMINALS = ['.', '!', '?', '<', '>', '/']
 QUESTION_FILE="question.txt"
-SMALL_QUESTION_FILE="smallq.txt"
+SMALL_QUESTION_FILE="question_big.txt"
 BELIZE="belize.txt"
 COMMONLY_USED_WORDS=set(["the", "be", "to", "of", "and", "a", "in", "that","have",
 "I","it","for","not","","with","he","as","you","is","do","at","this", "but","his",
@@ -74,8 +78,10 @@ def are_similar(word1,word2):
     return SequenceMatcher(None, word1, word2).ratio() >= .8
 
 def are_similar_w2v(word1, word2):
-    pass
-    #return Word2Vec shit
+    try: 
+      return MODEL.similarity(word1, word2) >= SIM_THRESHOLD
+    except:
+      return False
 
 # makes a list of words in a directory
 def makeWordList(directory):
@@ -111,7 +117,7 @@ def findWordRanges(wordList, directory):
         current = dirWordList[i].lower()
         if current not in map and current not in COMMONLY_USED_WORDS:
             map[current] = any(
-                are_similar(current, word) > SIM_THRESHOLD for word in question_words)
+                current == word or are_similar_w2v(current, word) for word in question_words)
             should_add = map[current]
 
         if current not in COMMONLY_USED_WORDS and should_add:
@@ -186,4 +192,4 @@ def parseAllQuestions(question_location):
       output_file.write(str(question_id)+' '+str(find_relevant_doc_id(answer[1], file_start_ends))+' '+str(answer[0]) +'\n')
 
 # starts calling all questions
-parseAllQuestions(QUESTION_FILE)
+parseAllQuestions(SMALL_QUESTION_FILE)
